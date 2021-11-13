@@ -10,11 +10,13 @@ public class control : MonoBehaviour
     public Animator anmi;
     public Collider2D coll;
     public LayerMask ground;
+    public int power_up;
+    public UnityEngine.UI.Text power_number;
     // Start is called before the first frame update
-    void Start()  //开始是调用该类
+    void Start()  //开始时调用该类
     {
         
-    }
+    } 
 
     // Update is called once per frame
     void Update()  //逐帧上传 
@@ -39,12 +41,14 @@ public class control : MonoBehaviour
         }
         //角色跳跃
          if (Input.GetButtonDown("Jump"))
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpforce  );
-            anmi.SetBool("jumping", true);
+        { if (coll.IsTouchingLayers(ground))
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpforce);
+                anmi.SetBool("jumping", true);
+            }
         }
     }
-
+    //切换动画效果
     void SwitchAnim() 
     {
         anmi.SetBool("ideling", false);
@@ -60,6 +64,16 @@ public class control : MonoBehaviour
             anmi.SetBool("falling", false);
             anmi.SetBool("ideling", true);
 
+        }
+    }
+    //收集物品
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "collection")
+        {
+            Destroy(collision.gameObject);
+            power_up++;
+            power_number.text = power_up.ToString();
         }
     }
 }

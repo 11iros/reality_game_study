@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - collection
   layers:
   - Default
   - TransparentFX
@@ -47,9 +48,15 @@ TagManager:
   - name: front ground
     uniqueID: 2901762701
     locked: 0
+  - name: shower
+    uniqueID: 2656516855
+    locked: 0
   - name: map
     uniqueID: 46476203
     locked: 0
   - name: player
     uniqueID: 2299147109
+    locked: 0
+  - name: front_shower
+    uniqueID: 392569451
     locked: 0
